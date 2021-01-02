@@ -17,6 +17,8 @@ CONF_PDF_PAGE = "pdf_page"
 CONF_REGEX_SEARCH = "regex_search"
 CONF_REGEX_MATCH_INDEX = "regex_match_index"
 
+ATTR_VALUE = "value"
+
 DEFAULT_NAME = "File"
 
 ICON = "mdi:file-pdf"
@@ -120,20 +122,24 @@ class PDFFileSensor(Entity):
             )
             return
 
-        result = ''
+        state = ''
         match_index = int(self._regex_match_index)
 
-        if self._val_tpl is not None:
-            result = self._val_tpl.async_render(parse_result=False)
-        elif self._regex_search is not None:
+        if self._regex_search is not None:
             matches = re.search(self._regex_search, text)
             matched_index = matches[match_index]
-            result = matched_index
+            state = matched_index
         else:
-            result = text
+            state = text
 
-        if len(result) > 255:
-            _LOGGER.warning("PDF data exceeds 255 characters, truncating: %s", result)
-            result = result[:255]
+        if self._val_tpl is not None:
+            variables = {
+                ATTR_VALUE: state
+            }
+            state = self._val_tpl.render(variables, parse_result=False)
 
-        self._state = result
+        if len(state) > 255:
+            _LOGGER.warning("PDF data exceeds 255 characters, truncating: %s", state)
+            state = state[:255]
+
+        self._state = state

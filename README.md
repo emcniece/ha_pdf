@@ -69,7 +69,9 @@ Index `0` returns the whole matched string. Indexes >= `1` return valid capture 
 
 #### value_template (optional)
 
-NOT WORKING: post-regex template rendering of the value. Current implementation is broken.
+Post-regex template rendering of the value.
+
+- `{{ value }}`: parsed text
 
 <hr />
 
