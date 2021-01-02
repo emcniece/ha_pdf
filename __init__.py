@@ -1,0 +1,1 @@
+"""The PDF file component."""
