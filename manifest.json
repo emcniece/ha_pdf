@@ -3,5 +3,6 @@
   "name": "PDF File",
   "documentation": "https://github.com/emcniece/ha_pdf",
   "requirements": ["PyPDF2"],
-  "codeowners": ["@emcniece"]
+  "codeowners": ["@emcniece"],
+  "version": "1.1"
 }
