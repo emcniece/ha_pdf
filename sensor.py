@@ -2,7 +2,7 @@
 import logging
 import os
 import re
-from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfReader
 import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
@@ -109,7 +109,7 @@ class PDFFileSensor(Entity):
         """Get the latest entry from a file and updates the state."""
         try:
             with open(self._file_path, 'rb') as file_data:
-                pdf = PdfFileReader(file_data)
+                pdf = PdfReader(file_data)
                 try:
                     page = pdf.getPage(int(self._pdf_page))
                 except IndexError:
