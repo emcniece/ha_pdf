@@ -111,7 +111,7 @@ class PDFFileSensor(Entity):
             with open(self._file_path, 'rb') as file_data:
                 pdf = PdfReader(file_data)
                 try:
-                    page = pdf.getPage(int(self._pdf_page))
+                    page = pdf.pages[int(self._pdf_page)]
                 except IndexError:
                     _LOGGER.error("PDF Page %s does not exist in file: %s", self._pdf_page, self._file_path)
                 text = page.extractText()

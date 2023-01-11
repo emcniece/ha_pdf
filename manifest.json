@@ -2,7 +2,7 @@
   "domain": "pdf",
   "name": "PDF File",
   "documentation": "https://github.com/emcniece/ha_pdf",
-  "requirements": ["PyPDF2"],
+  "requirements": ["PyPDF2~=3.0.0"],
   "codeowners": ["@emcniece"],
-  "version": "1.1"
+  "version": "1.1.1"
 }
