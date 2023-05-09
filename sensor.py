@@ -114,7 +114,7 @@ class PDFFileSensor(Entity):
                     page = pdf.pages[int(self._pdf_page)]
                 except IndexError:
                     _LOGGER.error("PDF Page %s does not exist in file: %s", self._pdf_page, self._file_path)
-                text = page.extractText()
+                text = page.extract_text()
         except (IndexError, FileNotFoundError, IsADirectoryError, UnboundLocalError):
             _LOGGER.warning(
                 "File or data not present at the moment: %s",
